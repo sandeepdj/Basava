@@ -44,14 +44,13 @@
                                 <th>Gender</th>
                                 <th>Mobile</th>
                                 <th>Age</th>
-                                <th>Doctor</th>
-                                <th>Status</th>
+                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor=' let user of users | paginate : { itemsPerPage:5, currentPage:page, id : 1, totalItems:15 } ;let i = index'>
-                                <td>{{i}}</td>
+                                <td>{{i+1}}</td>
                                 <td>{{user.billidh}} {{'('+user.billidd+')'}}</td>
                                 <td>{{user.billdtd}}</td>
                                 <td>{{user.pid}}</td>
@@ -60,8 +59,7 @@
                                 <td>{{user.gender}}</td>
                                 <td>{{user.mobile1}}</td>
                                 <td>{{user.age}}</td>
-                                <td>{{user.empnm}}</td>
-                                <td>{{user.scl}}</td>
+                                 <td>{{user.scl}}</td>
                                 <th>
                                     <i class="material-icons">remove_red_eye</i>
                                     <i class="material-icons">cloud_download</i>

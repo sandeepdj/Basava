@@ -13,18 +13,20 @@
 .logo img {
     padding: 5px;
 }
-
+.bgcol{
+  background-color: #272f3a;
+}
 .wtext {
     color: #fff;
     padding-top: 18px;
     font-weight: bold;
     font-size: 20px;
     position: relative;
-    float: left;
-}
+ }
 
 .navbar-light {
     float: left;
+    padding-bottom: 0px;
 }
 
 .nav-link {
@@ -48,6 +50,7 @@
     -webkit-border-radius: 2px 2px 0 0;
     -moz-border-radius: 2px 2px 0 0;
     border-radius: 2px 2px 0 0;
+
 }
 
 .navbar-light .navbar-nav .active>.nav-link,

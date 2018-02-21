@@ -1,5 +1,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+
 html,
 body {
     height: 100%;
@@ -8,6 +10,7 @@ body {
     padding: 0px;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
+    background-color: #272f3a;
 }
 
 .main-container {
@@ -32,3 +35,109 @@ body {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #F5F5F5;
 }
+
+
+.panel {
+  margin-bottom: 16px;
+  background-color: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #c9d9ea;
+}
+.panel {
+  margin-bottom: 5px;
+}
+.info-stats {
+  padding: 15px;
+}
+.info-stats.green-two .icon-type {
+  background: #52bf8a;
+  box-shadow: -3px 3px 0 #3fa976;
+}
+.info-stats .icon-type {
+  height: 36px;
+  width: 36px;
+  float: left;
+  position: relative;
+  margin-right: 10px;
+  text-align: center;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+.info-stats .icon-type i {
+  font-size: 18px;
+  line-height: 36px;
+  text-align: center;
+  color: #fff;
+}
+.info-stats .sale-num {
+  margin: 0 0 0 48px;
+}
+.info-stats .sale-num h4 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  line-height: 100%;
+  font-weight: 600;
+}
+.info-stats .sale-num p {
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+  line-height: 100%;
+  color: #4d4d4d;
+}
+.info-stats.green-one .icon-type {
+  background: #6dc6cd;
+  box-shadow: -3px 3px 0 #4fbac3;
+}
+.info-stats.pink .icon-type {
+  background: #F782AA;
+  box-shadow: -3px 3px 0 #f55c90;
+}
+.info-stats.yellow .icon-type {
+  background: #e3b442;
+  box-shadow: -3px 3px 0 #dca521;
+}
+
+
+.topbar {
+  padding: 0 20px;
+  background: #fff;
+  border-bottom: 1px solid #d1dfec;
+  -webkit-border-radius: 0 3px 0 0;
+  -moz-border-radius: 0 3px 0 0;
+  border-radius: 0 3px 0 0;
+}
+
+.topbar h4 {
+  padding: 10px;
+   color: #000;
+  font-size: 21px;
+}
+
+.box {
+  margin-top: 2%;
+  border-radius: 3px;
+  width: 98%;
+  margin-left: 1%;
+     background: #fff;
+     border: 1px solid #c9d9ea;
+ }
+
+ .box-body {
+     width: 100%;
+     padding: 15px;
+     position: relative;
+ }
+
+ .box-header {
+     border-radius: 3px 3px 0 0;
+     padding: 15px;
+     position: relative;
+     border-bottom: 1px solid #d1dfec;
+ }

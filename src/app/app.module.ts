@@ -16,6 +16,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ReportService } from './services/report.service';
 import {Ng2PaginationModule} from 'ng2-pagination';
 
+import { ChartsModule } from 'ng2-charts';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,9 +37,11 @@ import {Ng2PaginationModule} from 'ng2-pagination';
     routing,
     HttpClientModule,
     Ng2PaginationModule,
-    FormsModule, 
-    ReactiveFormsModule
-  ],
+    FormsModule,
+    ReactiveFormsModule,
+    ChartsModule
+
+   ],
   providers: [ReportService],
   bootstrap: [AppComponent]
 })

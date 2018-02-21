@@ -2,12 +2,57 @@
 <div class="bbg">
 
 
-    <div class="outletWrap">
-        <router-outlet></router-outlet>
-    </div>
-    <div class="dashboardWrap">
-        <div class="summary">
-            <h3>Summary</h3>
+  <div class="outletWrap">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="dashboardWrap">
+    <div class="summary">
+      <h3>Today's Summary</h3>
+
+      <div class="panel">
+        <div class="info-stats green-two">
+          <div class="icon-type pull-left">
+              <i class="fab fa-stack-overflow"></i>
+          </div>
+          <div class="sale-num">
+            <h4>732</h4>
+            <p>Total</p>
+          </div>
         </div>
+      </div>
+      <div class="panel">
+        <div class="info-stats green-one">
+          <div class="icon-type pull-left">
+            <i class="fab fa-product-hunt"></i>
+          </div>
+          <div class="sale-num">
+            <h4>529</h4>
+            <p>Pending</p>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="info-stats pink">
+          <div class="icon-type pull-left">
+              <i class="far fa-check-circle"></i>
+          </div>
+          <div class="sale-num">
+            <h4>218</h4>
+            <p>Completd</p>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="info-stats yellow">
+          <div class="icon-type pull-left">
+              <i class="fas fa-envelope"></i>
+          </div>
+          <div class="sale-num">
+            <h4>147</h4>
+            <p>Tasks</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
