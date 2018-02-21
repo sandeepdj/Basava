@@ -1,0 +1,78 @@
+<div class="container-fluid topbar">
+    <div class="row">
+        <h4>Reports</h4>
+    </div>
+</div>
+
+<div class="container-fluid main-container">
+    <div class="row">
+
+        <div class="box">
+            <div class="box-header">
+                <mat-form-field class="example-full-width">
+                    <span matPrefix><i class="material-icons">search</i></span>
+                    <input type="tel" matInput placeholder="Search patient">
+                </mat-form-field>
+
+
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a From date" [formControl]="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker1" placeholder="Choose a To date" [formControl]="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+
+            </div>
+            <div class="box-body">
+
+                <div class="col-md-12  ">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>#</th>
+                                <th>Bill No</th>
+                                <th>Bill Date</th>
+                                <th>UHID</th>
+                                <th>OP/IP Id</th>
+                                <th>Patient</th>
+                                <th>Gender</th>
+                                <th>Mobile</th>
+                                <th>Age</th>
+                                <th>Doctor</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor=' let user of users | paginate : { itemsPerPage:5, currentPage:page, id : 1, totalItems:15 } ;let i = index'>
+                                <td>{{i}}</td>
+                                <td>{{user.billidh}} {{'('+user.billidd+')'}}</td>
+                                <td>{{user.billdtd}}</td>
+                                <td>{{user.pid}}</td>
+                                <td>{{user.prId}}</td>
+                                <td>{{user.patnm}}</td>
+                                <td>{{user.gender}}</td>
+                                <td>{{user.mobile1}}</td>
+                                <td>{{user.age}}</td>
+                                <td>{{user.empnm}}</td>
+                                <td>{{user.scl}}</td>
+                                <th>
+                                    <i class="material-icons">remove_red_eye</i>
+                                    <i class="material-icons">cloud_download</i>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="page = getServerData($event)" id="1" maxSize="3" directionLinks="true" autohide="true">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

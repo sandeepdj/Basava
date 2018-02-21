@@ -1,0 +1,52 @@
+ .topbar {
+     padding: 0 20px;
+     background: #fff;
+     border-bottom: 1px solid #d1dfec;
+     -webkit-border-radius: 0 3px 0 0;
+     -moz-border-radius: 0 3px 0 0;
+     border-radius: 0 3px 0 0;
+ }
+ 
+ .topbar h4 {
+     padding: 10px;
+     text-transform: uppercase;
+     color: #000;
+     font-size: 21px;
+ }
+ 
+ .example-container {
+     display: flex;
+     flex-direction: column;
+     min-width: 300px;
+     width: 100%;
+ }
+ 
+ .mat-table {
+     overflow: auto;
+ }
+ 
+ .mat-header-cell.mat-sort-header-sorted {
+     color: black;
+ }
+ 
+ .box {
+     margin-top: 2%;
+     border-radius: 3px;
+     width: 90%;
+     margin-left: 5%;
+     background: #fff;
+     border: 1px solid #c9d9ea;
+ }
+ 
+ .box-body {
+     width: 100%;
+     padding: 15px;
+     position: relative;
+ }
+ 
+ .box-header {
+     border-radius: 3px 3px 0 0;
+     padding: 15px;
+     position: relative;
+     border-bottom: 1px solid #d1dfec;
+ }
