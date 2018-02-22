@@ -47,16 +47,7 @@
                             </td>
                         </tr>
                     </table>
-                    <table class="table" *ngIf="totalItem>0">
-                        <tbody>
-                            <tr>
-                                <td colspan="11">
-                                    <mat-paginator [length]="totalItem" [pageSize]="20" [pageSizeOptions]="pageSizeOptions" (page)="page = getServerData($event.pageIndex, $event.pageSize)">
-                                    </mat-paginator>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
                     <table class="table table-bordered  report" *ngIf="totalItem>0">
                         <thead class="thead-default">
                             <tr>
@@ -87,18 +78,17 @@
                                 <td>{{user.age}}</td>
                                 <td>
                                     <!-- {{user.scl}} -->
-
                                     <!-- <p style="width:80%" data-value="{{user.scl}}">HTML5</p> -->
-                                    <progress max="100" value=" {{user.scl}}" class="html5">
+                                    <!-- <progress max="100" value=" {{user.scl}}" class="html5">
                                              <div class="progress-bar">
                                                 <span style="width: 80%"> {{user.scl}}%</span>
                                             </div>
-                                        </progress> ({{user.scl}}%)
+                                        </progress> ({{user.scl}}%) -->
 
                                     <!-- <progress value=" {{user.scl}}" max="100"> </progress> -->
                                 </td>
                                 <th>
-                                    <i class="material-icons" (click)="openDialog(user.billidh,user.billidd,user.ptype)">remove_red_eye</i>
+                                    <i class="material-icons viewicon" (click)="openDialog(user.billidh,user.billidd,user.ptype)">remove_red_eye</i>
                                     <a class="material-icons dicon" href="http://106.51.56.235:8081/geopulse/geo/api/fpdf/lab_report.php?billhed={{user.billidh}}&billidd={{user.billidd}}&ptype=OP&subdeptid=0&prtype=1" target="_blank">cloud_download</a>
                                 </th>
                             </tr>
