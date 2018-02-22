@@ -9,13 +9,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { ReportsComponent } from './pages/reports/reports.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
+import { AuthGuard } from './_guards/index';
 const appRoutes : Routes =
   [ {
     path: '',
     redirectTo: 'Login',
     pathMatch: 'full'
   },
-  {path: 'Login', component: LoginComponent},
+  { path: 'Login', component: LoginComponent},
   {
       path: '',
       redirectTo: 'Basava',
@@ -24,13 +25,15 @@ const appRoutes : Routes =
     {
       path: 'Basava',
       component: LayoutComponent,
+      canActivate: [AuthGuard], 
       children: [
         { path: '', redirectTo: 'Home', pathMatch: 'full' },
-        {path: 'Home', component: HomeComponent},
-        {path: 'Reports', component: ReportsComponent},
-        {path: 'Profile', component: ProfileComponent},
+        {path: 'Home', component: HomeComponent, canActivate: [AuthGuard] },
+        {path: 'Reports', component: ReportsComponent, canActivate: [AuthGuard] },
+        {path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard]},
       ]
-    } 
+    },
+    { path: '**', redirectTo: '' }
   ];
   export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
 

@@ -9,30 +9,55 @@
 
         <div class="box">
             <div class="box-header">
-                <mat-form-field class="example-full-width">
-                    <span matPrefix><i class="material-icons">search</i></span>
-                    <input type="tel" matInput placeholder="Search patient">
-                </mat-form-field>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field class="full-width">
+                            <span matPrefix><i class="material-icons">search</i></span>
+                            <input type="tel" matInput placeholder="Search patient" [(ngModel)]="searchtext" name="searchtext" (keyup)="getServerData(1,20)" (keydown)="getServerData(1,20)">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <mat-form-field class="full-width">
+                            <input matInput [matDatepicker]="picker" placeholder="Choose a From date" [(ngModel)]="fromdate" name="fromdate" (dateChange)="getServerData(1,20)">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <mat-form-field class="full-width">
+                            <input matInput [matDatepicker]="picker1" placeholder="Choose a To date" [(ngModel)]="todate" name="todate" [max]="today" (dateChange)="getServerData(1,20)">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2"></div>
 
-
-                <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a From date" [formControl]="date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <input matInput [matDatepicker]="picker1" placeholder="Choose a To date" [formControl]="date">
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                </mat-form-field>
-
+                </div>
 
             </div>
             <div class="box-body">
 
-                <div class="col-md-12  ">
-                    <table class="table table-bordered table-striped">
+                <div class="col-md-12 ">
+                    <p class="text-center loader" *ngIf="pleaseWait"> <img src="./assets/preloader.gif"> <span style=" color: #dc5753; ">Please Wait...</span></p>
+
+                    <table *ngIf="totalItem<=0">
+                        <tr>
+                            <td colspan="10">
+                                <p class="text-center"> Data not available...</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table" *ngIf="totalItem>0">
+                        <tbody>
+                            <tr>
+                                <td colspan="11">
+                                    <mat-paginator [length]="totalItem" [pageSize]="20" [pageSizeOptions]="pageSizeOptions" (page)="page = getServerData($event.pageIndex, $event.pageSize)">
+                                    </mat-paginator>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered  report" *ngIf="totalItem>0">
                         <thead class="thead-default">
                             <tr>
                                 <th>#</th>
@@ -44,12 +69,13 @@
                                 <th>Gender</th>
                                 <th>Mobile</th>
                                 <th>Age</th>
-                                 <th>Status</th>
+                                <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor=' let user of users | paginate : { itemsPerPage:5, currentPage:page, id : 1, totalItems:15 } ;let i = index'>
+                            <!-- | paginate : { itemsPerPage:5, currentPage:page, id : 1, totalItems:15 } -->
+                            <tr *ngFor=' let user of users ;let i = index'>
                                 <td>{{i+1}}</td>
                                 <td>{{user.billidh}} {{'('+user.billidd+')'}}</td>
                                 <td>{{user.billdtd}}</td>
@@ -59,16 +85,38 @@
                                 <td>{{user.gender}}</td>
                                 <td>{{user.mobile1}}</td>
                                 <td>{{user.age}}</td>
-                                 <td>{{user.scl}}</td>
+                                <td>
+                                    <!-- {{user.scl}} -->
+
+                                    <!-- <p style="width:80%" data-value="{{user.scl}}">HTML5</p> -->
+                                    <progress max="100" value=" {{user.scl}}" class="html5">
+                                             <div class="progress-bar">
+                                                <span style="width: 80%"> {{user.scl}}%</span>
+                                            </div>
+                                        </progress> ({{user.scl}}%)
+
+                                    <!-- <progress value=" {{user.scl}}" max="100"> </progress> -->
+                                </td>
                                 <th>
-                                    <i class="material-icons">remove_red_eye</i>
-                                    <i class="material-icons">cloud_download</i>
+                                    <i class="material-icons" (click)="openDialog(user.billidh,user.billidd,user.ptype)">remove_red_eye</i>
+                                    <a class="material-icons dicon" href="http://106.51.56.235:8081/geopulse/geo/api/fpdf/lab_report.php?billhed={{user.billidh}}&billidd={{user.billidd}}&ptype=OP&subdeptid=0&prtype=1" target="_blank">cloud_download</a>
                                 </th>
+                            </tr>
+
+                            <tr>
+
+                                <td colspan="11">
+                                    <mat-paginator [length]="totalItem" [pageSize]="20" [pageSizeOptions]="pageSizeOptions" (page)="page = getServerData($event.pageIndex, $event.pageSize)">
+                                    </mat-paginator>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                    <pagination-controls (pageChange)="page = getServerData($event)" id="1" maxSize="3" directionLinks="true" autohide="true">
-                    </pagination-controls>
+                    <!-- <p class="text-center" *ngIf="pleaseWait"> <img src="./assets/preloader.gif"> <span style=" color: #dc5753; ">Please Wait...</span></p> -->
+
+                    <!-- <pagination-controls *ngIf="totalItem>0">
+                        (pageChange)="page = getServerData($event)" id="1" maxSize="6" directionLinks="true" autohide="true">
+                    </pagination-controls> -->
                 </div>
             </div>
         </div>

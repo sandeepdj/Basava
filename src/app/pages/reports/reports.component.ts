@@ -6,6 +6,9 @@ import 'rxjs/add/observable/of';
 import {DataSource} from '@angular/cdk/collections';
 import { Report } from '../../models/report.model';
 import {FormControl} from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import {PageEvent} from '@angular/material';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-reports',
@@ -15,37 +18,108 @@ import {FormControl} from '@angular/forms';
 
 
 export class ReportsComponent implements OnInit {
-  date = new FormControl(new Date());
+	fromdate = new Date();
+	todate =  new Date() ;
+	today = new Date();
+	searchtext:string;
+	pleaseWait:boolean=false;
+	//pleaseWait:false;
+	pageSizeOptions = [5, 10, 20, 25, 100];
+	
 	serializedDate = new FormControl((new Date()).toISOString());
-	
-	
-  users = [];
-  totalItem:number;
-     constructor(private ReportService: ReportService) { }
-  
-  ngOnInit() { 
-    this.getServerData(1);
-   
- 
-  }
-  public getServerData(event){
-		this.ReportService.getdata(event).subscribe(
+	users = [];
+	tests=[];
+	totalItem:number;
+	constructor(
+		private ReportService: ReportService,
+		private datePipe: DatePipe,
+		public dialog: MatDialog) { }
+	ngOnInit() { 
+		this.searchtext = '';
+		this.getServerData(1,20);
+	}
+	// MatPaginator Output
+	pageEvent: PageEvent;
+	setPageSizeOptions(setPageSizeOptionsInput: string) {
+	this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+	}
+  public getServerData(pagno,psize){
+	this.pleaseWait = true;
+	console.log("pageIndex"+ pagno);
+	console.log("pageSize"+psize);
+		var fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
+		var todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
+		var srctxt = this.searchtext;
+		if(this.searchtext){
+				srctxt = srctxt;     // answer
+		}else{
+				 srctxt = 'novalue';
+		}
+		this.ReportService.getdata(pagno,psize,fromdate,todate,srctxt).subscribe(
 			response =>{
+				this.pleaseWait = false;
 				if(response.error) { 
-					console.log('Server Error');
+					
+ 					console.log('Server Error');
 					console.log(response.error);
 				} else {
+					console.log(response);
 					this.users = response.patList;
 					this.totalItem = response.total;
+					console.log(this.totalItem);
 				}
 			},
 			error =>{
+				this.pleaseWait = false;
 				console.log(error);
 			}
 		);
-		return event;
+   }
+
+
+
+  openDialog(billidh,billidd,ptype) {
+	
+
+
+	
+	const dialogRef = this.dialog.open(DialogContentExample, { height: '350px' });
+	
+	this.getTestList(billidh,billidd,ptype);
+	dialogRef.afterClosed().subscribe(result => {
+	  console.log(`Dialog result: ${result}`);
+	});
+	
+
   }
+      getTestList(billidh,billidd,ptype) {
+		this.ReportService.getTestdata(billidh,billidd,ptype).subscribe(
+			response =>{
+ 				if(response.error) { 
+ 					console.log('Server Error');
+					console.log(response.error);
+				} else {
+					console.log(response);
+					this.tests = response.testList;
+  				}
+			},
+			error =>{
+ 				console.log(error);
+			}
+		);
+	}
   
 
-}
+
+
+}//END
  
+
+
+
+  @Component({
+	selector: 'app-testlist',
+	templateUrl: 'testsList.dialog.html',
+  })
+  export class DialogContentExample {}
+  

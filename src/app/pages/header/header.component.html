@@ -1,6 +1,6 @@
 <header class="header">
     <div class="container-fluid ">
-        <div class="row">
+        <div class="row shadow headerbg">
             <div class="col-md-2 logo">
                 <img src="./assets/geo13.png">
             </div>
@@ -11,44 +11,44 @@
             <div class="col-md-2 pull-right">
                 <ul class="rightNav">
                     <li>
-                        <a><i class="material-icons matr">person_pin</i></a>
+                        <a routerLink="Profile"><i class="material-icons matr">person_pin</i></a>
                     </li>
                     <li>
-                        <a><i class="fas fa-power-off matr"></i>   </a>
+                        <a href><i class="fas fa-power-off matr"></i>   </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="row bgcol">
-          <div class="col-md-12">
-            <nav class="navbar navbar-expand-sm navbar-light bg-faded">
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-sm navbar-light bg-faded">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <div class="collapse navbar-collapse" id="nav-content">
-                  <ul class="navbar-nav cnav">
-                      <li class="nav-item">
-                          <a class="nav-link" routerLink="Home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                              <i class="material-icons">dashboard</i>
-                              <span class="linkText">Dashboard</span>
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" routerLink="Reports" routerLinkActive="active">
-                              <i class="material-icons">pie_chart</i>
-                              <span class="linkText">Reports</span>
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" routerLinkActive="active">
-                              <i class="material-icons">person_outline</i>
-                              <span class="linkText">Profile</span>
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </nav>
-          </div>
+                    <div class="collapse navbar-collapse" id="nav-content">
+                        <ul class="navbar-nav cnav">
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="Home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                                    <i class="material-icons">dashboard</i>
+                                    <span class="linkText">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="Reports" routerLinkActive="active">
+                                    <i class="material-icons">pie_chart</i>
+                                    <span class="linkText">Reports</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" routerLink="Profile" routerLinkActive="active">
+                                    <i class="material-icons">person_outline</i>
+                                    <span class="linkText">Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
     </div>
 </header>
