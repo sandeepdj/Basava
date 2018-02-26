@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthenticationService {
-    private serviceUrl = 'http://106.51.56.235:8081/geopulse/geo/api/v1/Extlogin';
+    private serviceUrl = 'http://106.51.56.235:8081/geopulse/bsdlab/api/v1/Extlogin';
     constructor(private http: HttpClient) { }
     login(loginData) {
        console.log(loginData);

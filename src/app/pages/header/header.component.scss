@@ -9,15 +9,13 @@
     padding-left: 0px;
 }
 
-.shadow {
-    -webkit-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
-    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
-}
-.bgcol .navbar {
-  margin-left: -6px;;
-}
 .logo img {
     padding: 5px;
+    border-top-right-radius: 28px;
+    border-bottom-right-radius: 29px;
+    width: 55%;
+    margin-left: -12px;
+    border-bottom: 1px solid #3ac9d6;
 }
 
 .wtext {
@@ -85,12 +83,23 @@
     color: #fff;
 }
 
-.cnav {
-    margin-left: 3px;
-}
-
 .nav-link:hover {
     color: #fff !important;
+}
+
+.pleft0 {
+    padding-left: 0px !important;
+}
+
+.pright0 {
+    padding-right: 0px;
+}
+
+.logout {
+    position: relative;
+    float: left;
+    padding: 8px;
+    padding-right: 0px;
 }
 
 .nav-link:hover i {
@@ -103,7 +112,19 @@
     padding: 0px;
     list-style-type: none;
     margin-bottom: 0px;
-    padding-top: 12px;
+    padding-top: 7px;
+}
+
+.uphoto {
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.pname {
+    position: relative;
+    float: left;
 }
 
 .rightNav li {
@@ -112,16 +133,7 @@
 }
 
 .rightNav li a {
-    position: relative;
-    float: left;
-    background: #fff;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(86%, #f1f5fa), to(#c9d9ea));
-    background: linear-gradient(to bottom, #fff 0, #f1f5fa 86%, #c9d9ea 100%);
-    color: #333 !important;
-    padding: 8px;
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
+    color: #fff !important;
 }
 
 .rightNav li a i {
@@ -129,15 +141,15 @@
 }
 
 .rightNav li a:hover {
-    background: -moz-linear-gradient(-45deg, #EA5C54 0%, #bb6dec 100%);
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #EA5C54), color-stop(100%, #bb6dec));
-    background: -webkit-linear-gradient(-45deg, #EA5C54 0%, #bb6dec 100%);
-    background: -o-linear-gradient(-45deg, #EA5C54 0%, #bb6dec 100%);
-    background: -ms-linear-gradient(-45deg, #EA5C54 0%, #bb6dec 100%);
-    background: linear-gradient(135deg, #EA5C54 0%, #bb6dec 100%);
-    color: #fff;
+    text-decoration: none;
 }
 
 .rightNav li a:hover .matr {
     color: #fff !important;
+}
+
+.menubar {
+    float: left;
+    width: 100%;
+    margin-top: 52px;
 }

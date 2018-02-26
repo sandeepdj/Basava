@@ -1,7 +1,7 @@
-import { ModuleWithProviders }  from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule,ModuleWithProviders }  from '@angular/core';
+import { Routes, RouterModule,ExtraOptions } from '@angular/router';
 
-
+ 
 import { HeaderComponent } from './pages/header/header.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -10,7 +10,7 @@ import { ReportsComponent } from './pages/reports/reports.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
 import { AuthGuard } from './_guards/index';
-const appRoutes : Routes =
+const ROUTES : Routes =
   [ {
     path: '',
     redirectTo: 'Login',
@@ -27,7 +27,7 @@ const appRoutes : Routes =
       component: LayoutComponent,
       canActivate: [AuthGuard], 
       children: [
-        { path: '', redirectTo: 'Home', pathMatch: 'full' },
+        { path: '', redirectTo: 'Reports', pathMatch: 'full' },
         {path: 'Home', component: HomeComponent, canActivate: [AuthGuard] },
         {path: 'Reports', component: ReportsComponent, canActivate: [AuthGuard] },
         {path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard]},
@@ -35,7 +35,18 @@ const appRoutes : Routes =
     },
     { path: '**', redirectTo: '' }
   ];
-  export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+  const config: ExtraOptions = {
+    useHash: true,
+};
 
+  @NgModule({
+    imports: [RouterModule.forRoot(ROUTES, config)],
+    exports: [RouterModule],
+  })
+  export class AppRoutingModule {
+  }  
+
+
+ 
 
  

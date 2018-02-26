@@ -3,43 +3,44 @@
         <h4>Reports</h4>
     </div>
 </div>
-
 <div class="container-fluid main-container">
     <div class="row">
-
         <div class="box">
             <div class="box-header">
                 <div class="row">
                     <div class="col-md-3">
                         <mat-form-field class="full-width">
                             <span matPrefix><i class="material-icons">search</i></span>
-                            <input type="tel" matInput placeholder="Search patient" [(ngModel)]="searchtext" name="searchtext" (keyup)="getServerData(1,20)" (keydown)="getServerData(1,20)">
+                            <input type="tel" matInput placeholder="Search patient" [(ngModel)]="searchtext" name="searchtext" (keyup)="searchData(0,20,sponid)" (keydown)="searchData(0,20,sponid)">
                         </mat-form-field>
                     </div>
                     <div class="col-md-2">
                         <mat-form-field class="full-width">
-                            <input matInput [matDatepicker]="picker" placeholder="Choose a From date" [(ngModel)]="fromdate" name="fromdate" (dateChange)="getServerData(1,20)">
+                            <input matInput [matDatepicker]="picker" placeholder="Choose a From date" [(ngModel)]="fromdate" name="fromdate" (dateChange)="getServerData(0,20,sponid)">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                     </div>
                     <div class="col-md-2">
                         <mat-form-field class="full-width">
-                            <input matInput [matDatepicker]="picker1" placeholder="Choose a To date" [(ngModel)]="todate" name="todate" [max]="today" (dateChange)="getServerData(1,20)">
+                            <input matInput [matDatepicker]="picker1" placeholder="Choose a To date" [(ngModel)]="todate" name="todate" [max]="today" (dateChange)="getServerData(0,20,sponid)">
                             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                             <mat-datepicker #picker1></mat-datepicker>
                         </mat-form-field>
                     </div>
-                    <div class="col-md-2"></div>
-
+                    <div class="col-md-2">
+                        <mat-form-field>
+                            <mat-select [(value)]="rstatus" placeholder="Result Status" [(ngModel)]="rstatus" name="rstatus">
+                                <mat-option value="Pending">Pending</mat-option>
+                                <mat-option value="Completed"> Completed</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
-
             </div>
             <div class="box-body">
-
                 <div class="col-md-12 ">
                     <p class="text-center loader" *ngIf="pleaseWait"> <img src="./assets/preloader.gif"> <span style=" color: #dc5753; ">Please Wait...</span></p>
-
                     <table *ngIf="totalItem<=0">
                         <tr>
                             <td colspan="10">
@@ -54,8 +55,9 @@
                                 <th>#</th>
                                 <th>Bill No</th>
                                 <th>Bill Date</th>
+                                <th>Col. Date</th>
                                 <th>UHID</th>
-                                <th>OP/IP Id</th>
+
                                 <th>Patient</th>
                                 <th>Gender</th>
                                 <th>Mobile</th>
@@ -70,33 +72,35 @@
                                 <td>{{i+1}}</td>
                                 <td>{{user.billidh}} {{'('+user.billidd+')'}}</td>
                                 <td>{{user.billdtd}}</td>
+                                <td>{{user.billdtd}}</td>
                                 <td>{{user.pid}}</td>
-                                <td>{{user.prId}}</td>
+
                                 <td>{{user.patnm}}</td>
                                 <td>{{user.gender}}</td>
                                 <td>{{user.mobile1}}</td>
                                 <td>{{user.age}}</td>
                                 <td>
+
                                     <!-- {{user.scl}} -->
                                     <!-- <p style="width:80%" data-value="{{user.scl}}">HTML5</p> -->
-                                    <!-- <progress max="100" value=" {{user.scl}}" class="html5">
+                                    <progress max="100" value=" {{user.scl}}" class="html5">
                                              <div class="progress-bar">
                                                 <span style="width: 80%"> {{user.scl}}%</span>
                                             </div>
-                                        </progress> ({{user.scl}}%) -->
+                                        </progress> ({{user.scl}}%)
 
                                     <!-- <progress value=" {{user.scl}}" max="100"> </progress> -->
                                 </td>
                                 <th>
                                     <i class="material-icons viewicon" (click)="openDialog(user.billidh,user.billidd,user.ptype)">remove_red_eye</i>
-                                    <a class="material-icons dicon" href="http://106.51.56.235:8081/geopulse/geo/api/fpdf/lab_report.php?billhed={{user.billidh}}&billidd={{user.billidd}}&ptype=OP&subdeptid=0&prtype=1" target="_blank">cloud_download</a>
+                                    <a class="material-icons dicon" href="http://106.51.56.235:8081/geopulse/bsdlab/api/fpdf/lab_report.php?billhed={{user.billidh}}&billidd={{user.billidd}}&ptype=OP&subdeptid=0&prtype=1" target="_blank">cloud_download</a>
                                 </th>
                             </tr>
 
                             <tr>
 
                                 <td colspan="11">
-                                    <mat-paginator [length]="totalItem" [pageSize]="20" [pageSizeOptions]="pageSizeOptions" (page)="page = getServerData($event.pageIndex, $event.pageSize)">
+                                    <mat-paginator [length]="totalItem" [pageSize]="20" [pageSizeOptions]="pageSizeOptions" (page)="page = getServerData($event.pageIndex, $event.pageSize,sponid)">
                                     </mat-paginator>
                                 </td>
                             </tr>

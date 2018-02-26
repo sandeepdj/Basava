@@ -19,48 +19,69 @@ import {MAT_DIALOG_DATA} from '@angular/material';
 
 
 export class ReportsComponent implements OnInit {
+	sponid:any;
 	fromdate = new Date();
 	todate =  new Date() ;
 	today = new Date();
 	searchtext:string;
 	pleaseWait:boolean=false;
-	//pleaseWait:false;
-	pageSizeOptions = [5, 10, 20, 25, 100];
-
+	pleaseWaits:boolean=false;
+ 	pageSizeOptions = [5, 10, 20, 25, 100];
+	sessData:any={};
 	serializedDate = new FormControl((new Date()).toISOString());
 	users = [];
-  @Input() public tests=[];
+
+	rstatus = 'Pending';
+
+   @Input() public tests=[];
 	totalItem:number;
 	constructor(
 		private ReportService: ReportService,
 		private datePipe: DatePipe,
 		public dialog: MatDialog) { }
 	ngOnInit() {
+		this.sessData = JSON.parse(sessionStorage.getItem('currentUser'));
+		 var sponIds =  this.sessData.uid;
+		 this.sponid = sponIds;
+		console.log(this.sponid);
 		this.searchtext = '';
-		this.getServerData(1,20);
+		this.getServerData(0,20,this.sponid);
+
 	}
+
 	// MatPaginator Output
 	pageEvent: PageEvent;
 	setPageSizeOptions(setPageSizeOptionsInput: string) {
 	this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
 	}
-  public getServerData(pagno,psize){
-	this.pleaseWait = true;
-	console.log("pageIndex"+ pagno);
-	console.log("pageSize"+psize);
+
+	public getServerDataSrc(pagno,psize,sponId){
+		var srctxt = this.searchtext;
+		if(srctxt.length>=3){
+			this.getServerData(pagno,psize,sponId);
+		}else{
+		
+		}
+		if(srctxt.length==0){
+			this.getServerData(0,20,this.sponid);
+		}
+	}
+
+  public getServerData(pagno,psize,sponId){
+		this.pleaseWait = true;
 		var fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
 		var todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
 		var srctxt = this.searchtext;
 		if(this.searchtext){
-				srctxt = srctxt;     // answer
+				srctxt = srctxt;      
 		}else{
 				 srctxt = 'novalue';
 		}
-		this.ReportService.getdata(pagno,psize,fromdate,todate,srctxt).subscribe(
+		var rstatus = this.rstatus;
+		this.ReportService.getdata(pagno,psize,sponId,fromdate,todate,srctxt).subscribe(
 			response =>{
 				this.pleaseWait = false;
 				if(response.error) {
-
  					console.log('Server Error');
 					console.log(response.error);
 				} else {
@@ -76,14 +97,42 @@ export class ReportsComponent implements OnInit {
 			}
 		);
    }
+	 public searchData(pagno,psize,sponId){
+		this.pleaseWaits = true;
+		var fromdate = this.datePipe.transform(this.fromdate, 'yyyy-MM-dd');
+		var todate = this.datePipe.transform(this.todate, 'yyyy-MM-dd');
+		var srctxt = this.searchtext;
+		if(this.searchtext){
+				srctxt = srctxt;      
+		}else{
+				 srctxt = 'novalue';
+		}
+		var rstatus = this.rstatus;
+		this.ReportService.getdata(pagno,psize,sponId,fromdate,todate,srctxt).subscribe(
+			response =>{
+				this.pleaseWaits = false;
+				if(response.error) {
+ 					console.log('Server Error');
+					console.log(response.error);
+				} else {
+					console.log(response);
+					this.users = response.patList;
+					this.totalItem = response.total;
+					console.log(this.totalItem);
+				}
+			},
+			error =>{
+				this.pleaseWaits = false;
+				console.log(error);
+			}
+		);
+   }
+
 
 
 
   openDialog(billidh,billidd,ptype) {
-
-
-
-
+ 
   const dialogRef = this.dialog.open(DialogContentExample,
      { height: '350px',
      data: {

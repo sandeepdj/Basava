@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
+	sessData:any={};   
   constructor() { }
 
   ngOnInit() {
+    this.sessData = JSON.parse(sessionStorage.getItem('currentUser'));
+    var sponIds =  this.sessData.uid;
+
   }
 
 }

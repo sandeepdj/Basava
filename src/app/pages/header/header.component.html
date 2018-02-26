@@ -1,27 +1,30 @@
 <header class="header">
     <div class="container-fluid ">
         <div class="row shadow headerbg">
-            <div class="col-md-2 logo">
-                <img src="./assets/geo13.png">
+            <div class="col-md-3 logo">
+                <img src="http://106.51.56.235:8081/geopulse/geo/api/images/gp.png">
             </div>
-            <div class="col-md-8 text-center">
-
+            <div class="col-md-6 text-center">
+                <!-- <i class="fa fa-home"></i> -->
                 <h4 class="text-center wtext"> BASAVASHREE DIAGNOSTICS & RENEU LIFE </h4>
             </div>
-            <div class="col-md-2 pull-right">
+            <div class="col-md-3 pull-right pright0">
                 <ul class="rightNav">
                     <li>
-                        <a routerLink="Profile"><i class="material-icons matr">person_pin</i></a>
+                        <a routerLink="Profile" class="pname">
+                            <img src="./assets/avatar.png" class="uphoto"> {{sponName}}
+                            <!-- <i class="material-icons matr">person_pin</i> -->
+                        </a>
                     </li>
                     <li>
-                        <a href><i class="fas fa-power-off matr"></i>   </a>
+                        <a href class="logout" (click)="logoutUser()"><i class="fas fa-power-off matr"></i>   </a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="row bgcol">
-            <div class="col-md-12">
-                <nav class="navbar navbar-expand-sm navbar-light bg-faded">
+        <div class="row bgcol menubar">
+            <div class="col-md-12 pleft0" style="background: #F1F1F1;">
+                <nav class="navbar navbar-expand-sm navbar-light bg-faded pleft0">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>

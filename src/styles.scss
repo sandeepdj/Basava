@@ -31,8 +31,19 @@ body {
 }
 */
 
-.header {
+// .shadow {
+//     -webkit-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+//     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+// }
+.headerbg {
     background: #3ac9d6;
+    z-index: 999;
+    position: fixed;
+    width: 100%;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+    -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
+    -o-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.21);
 }
 
 .bbg {

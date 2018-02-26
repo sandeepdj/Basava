@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HttpClientModule} from '@angular/common/http';
 import { MaterialModule } from './app.material';
-import { routing } from './app.routes';
+import { AppRoutingModule } from './app.routes';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './pages/header/header.component';
 import { LayoutComponent } from './pages/layout/layout.component';
@@ -39,7 +39,7 @@ import { DatePipe } from '@angular/common';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    routing,
+    AppRoutingModule,
     HttpClientModule,
     Ng2PaginationModule,
     FormsModule,

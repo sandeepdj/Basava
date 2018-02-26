@@ -9,15 +9,10 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class ReportService {
  
-  private serviceUrl = 'http://106.51.56.235:8081/geopulse/geo/api/v1/';
-
-  //private serviceUrl = 'https://jsonplaceholder.typicode.com/users';
-  
+  private serviceUrl = 'http://106.51.56.235:8081/geopulse/bsdlab/api/v1/';  
   constructor(private http: HttpClient) { }
-
-
-    	public getdata(page:Number,pageSize:Number,fromDate:String,toDate:String,srcText:string):any{
-		return this.http.get(this.serviceUrl+'epatientList'+'/'+page+'/'+fromDate+'/'+toDate+'/'+srcText+'/'+pageSize)
+	public getdata(page:Number,pageSize:Number,sponId:number,fromDate:String,toDate:String,srcText:string):any{
+		return this.http.get(this.serviceUrl+'epatientList'+'/'+page+'/'+fromDate+'/'+toDate+'/'+srcText+'/'+pageSize+'/'+sponId)
 			.map((response:Response) => response)
 			.catch((error:any) => Observable.throw(error.json().error) || 'Server Error');
 	}
@@ -27,9 +22,6 @@ export class ReportService {
 			.map((response:Response) => response)
 			.catch((error:any) => Observable.throw(error.json().error) || 'Server Error');
 	}
-
-
- 
 }
 
 
